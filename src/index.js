@@ -14,6 +14,21 @@ const countModifier = (count = 0, action) => {
   return count
 }
 
-const countStroe = createStore(countModifier)
+const countStore = createStore(countModifier)
 
-countStroe.dispatch({ type : "HELLO"})
+const onChange = () => {
+  number.innerText = countStore.getState()
+}
+
+countStore.subscribe(onChange)
+
+const handleAdd = () => {
+  countStore.dispatch({ type: "ADD" })
+}
+
+const handleMinus = () => {
+  countStore.dispatch({ type: "MINUS" })
+}
+
+add.addEventListener("click", handleAdd)
+minus.addEventListener("click", handleMinus)
